@@ -58,9 +58,17 @@ class Restaurant(db.Model):
         db.session.add(self)
         db.session.commit()
     
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    
     def format(self):
         return {
             'id': self.id,
+            'title': self.title,
             'city': self.city,
             'state': self.state,
             'address': self.address,
@@ -105,3 +113,26 @@ class DinningTable(db.Model):
     capacity = db.Column(db.Integer)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurant.id'), nullable=False)
 
+    def __init__(self, code, capacity, restaurant_id):
+        self.code = code,
+        self.capacity = capacity,
+        self.restaurant_id = restaurant_id
+    
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+            'id': self.id,
+            'code': self.code,
+            'capacity': self.capacity,
+            'restaurant_id': self.restaurant_id
+        }
