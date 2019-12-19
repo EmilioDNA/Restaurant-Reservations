@@ -1,6 +1,7 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
 import json
+import datetime
 
 database_name= "reservations"
 database_path = "postgres://{}@{}/{}".format('postgres:postgres', 'localhost:5433', database_name)
@@ -19,6 +20,11 @@ def setup_db(app, database_path=database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
+
+
+
+def convert_string_datetime(datetime_str):
+    return datetime.datetime.strftime(datetime_str, "%Y-%m-%d %H:%M:%S")
 
 ''' This is just a sample model in case that the Auth0 params should be stored locally'''
 # class User(db.Model):
@@ -99,7 +105,41 @@ class Reservation(db.Model):
     start_time = db.Column(db.DateTime())
     end_time = db.Column(db.DateTime())
     dinning_tables = db.relationship('DinningTable', secondary=reservation_tables,
-                        backref=db.backref('order', lazy=True))
+                        backref=db.backref('reservations', lazy=True))
+
+    
+    def __init__(self, start_time, end_time):
+        self.start_time = start_time
+        self.end_time = end_time
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()    
+
+    def format(self):
+        return {
+            'id': self.id,
+            'start_time': convert_string_datetime(self.start_time),
+            'end_time': convert_string_datetime(self.end_time)
+        }
+
+    @property
+    def display_dinning_tables(self):
+        dinning_tables = self.dinning_tables 
+
+        return {
+            'id': self.id,
+            'start_time': convert_string_datetime(self.start_time),
+            'end_time': convert_string_datetime(self.end_time),
+            'dinning_tables': [dinning_table.format() for dinning_table in dinning_tables]
+        }
 
 '''
     This is the DinningTable model that is related in a Many to Many relationship to the Reservation model
@@ -135,4 +175,14 @@ class DinningTable(db.Model):
             'code': self.code,
             'capacity': self.capacity,
             'restaurant_id': self.restaurant_id
+        }
+
+    @property
+    def display_reservations(self):
+        reservations = self.reservations 
+
+        return {
+            'id': self.id,
+            'code': self.code,
+            'reservations': [reservation.format() for reservation in reservations]
         }
