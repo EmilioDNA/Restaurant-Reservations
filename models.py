@@ -33,7 +33,13 @@ def convert_string_datetime(datetime_str):
 #     id = Column(Integer, primary_key=True)
 #     username = Column(String)
 #     password = Column(String)
-#     rol = Column(String)
+#     role_id= Connect to the other table
+
+# class Role(db.Model):
+#     __tablename__ = 'role'
+
+#     id = Column(Integer, primary_key=True)
+#     role = Column(String)
 #     permissions = Column(String)
 
 ''' This is the Restaurant model that includes diverse fields. 
