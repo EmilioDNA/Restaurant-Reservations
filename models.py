@@ -22,7 +22,6 @@ def setup_db(app, database_path=database_path):
     db.create_all()
 
 
-
 def convert_string_datetime(datetime_str):
     return datetime.datetime.strftime(datetime_str, "%Y-%m-%d %H:%M:%S")
 

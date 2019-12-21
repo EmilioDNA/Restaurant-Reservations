@@ -72,8 +72,8 @@ def create_app(test_config=None):
       return 'Hello'
 
     @app.route('/restaurants', methods=['GET'])
-    # @requires_auth('get:restaurants')
-    def retrieve_restaurants():
+    @requires_auth('get:restaurants')
+    def retrieve_restaurants(jwt):
       selection = Restaurant.query.order_by(Restaurant.id).all()
       current_restaurants = paginate_restaurants(request, selection)
 
@@ -87,8 +87,8 @@ def create_app(test_config=None):
       })
 
     @app.route('/restaurants', methods=['POST'])
-    # @requires_auth('post:restaurants')
-    def create_restaurant():
+    @requires_auth('post:restaurants')
+    def create_restaurant(jwt):
         body = request.get_json()
 
         new_title = body.get('title', None)
@@ -123,8 +123,8 @@ def create_app(test_config=None):
 
 
     @app.route('/restaurants/<int:restaurant_id>', methods=['PATCH'])
-    # @requires_auth('patch:restaurants')
-    def update_restaurant(restaurant_id):
+    @requires_auth('patch:restaurants')
+    def update_restaurant(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
 
         if restaurant is None:
@@ -166,8 +166,8 @@ def create_app(test_config=None):
             abort(422)
     
     @app.route('/restaurants/<int:restaurant_id>', methods=['DELETE'])
-    # @requires_auth('delete:restaurants')
-    def delete_restaurant( restaurant_id):
+    @requires_auth('delete:restaurants')
+    def delete_restaurant(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         if restaurant is None:
             abort(404)
@@ -189,8 +189,8 @@ def create_app(test_config=None):
 
 
     @app.route('/restaurants/<int:restaurant_id>/tables', methods=['GET'])
-    # @requires_auth('get:dinning-tables')
-    def retrieve_dinning_tables(restaurant_id):
+    @requires_auth('get:dinning-tables')
+    def retrieve_dinning_tables(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         if restaurant is None:
             abort(404)
@@ -208,8 +208,8 @@ def create_app(test_config=None):
         })
 
     @app.route('/restaurants/<int:restaurant_id>/tables', methods=['POST'])
-    # @requires_auth('post:dinning-tables')
-    def create_dinning_table(restaurant_id):
+    @requires_auth('post:dinning-tables')
+    def create_dinning_table(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         if restaurant is None:
             abort(404)
@@ -237,8 +237,8 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/restaurants/<int:restaurant_id>/tables/<int:table_id>', methods=['PATCH'])
-    # @requires_auth('patch:dinning-tables')
-    def update_dinning_table(restaurant_id, table_id):
+    @requires_auth('patch:dinning_tables')
+    def update_dinning_table(jwt, restaurant_id, table_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         dinning_table = DinningTable.query.filter(DinningTable.id == table_id).one_or_none()
         
@@ -270,8 +270,8 @@ def create_app(test_config=None):
 
     
     @app.route('/restaurants/<int:restaurant_id>/tables/<int:table_id>', methods=['DELETE'])
-    # @requires_auth('delete:dinning-tables')
-    def delete_dinning_table(restaurant_id, table_id):
+    @requires_auth('delete:dinning-tables')
+    def delete_dinning_table(jwt, restaurant_id, table_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         dinning_table = DinningTable.query.filter(DinningTable.id == table_id).one_or_none()
         
@@ -294,8 +294,8 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/restaurants/<int:restaurant_id>/reservations', methods=['GET'])
-    # @requires_auth('get:reservations')
-    def retrieve_reservations(restaurant_id):
+    @requires_auth('get:reservations')
+    def retrieve_reservations(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         if restaurant is None:
             abort(404)
@@ -318,8 +318,8 @@ def create_app(test_config=None):
         
 
     @app.route('/restaurants/<int:restaurant_id>/reservations', methods=['POST'])
-    # @requires_auth('post:reservations')
-    def create_reservation(restaurant_id):
+    @requires_auth('post:reservations')
+    def create_reservation(jwt, restaurant_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         if restaurant is None:
             abort(404)
@@ -359,8 +359,8 @@ def create_app(test_config=None):
         
 
     @app.route('/restaurants/<int:restaurant_id>/reservations/<int:reservation_id>', methods=['PATCH'])
-    # @requires_auth('patch:reservations')
-    def update_reservation(restaurant_id, reservation_id):
+    @requires_auth('patch:reservations')
+    def update_reservation(jwt, restaurant_id, reservation_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         reservation = Reservation.query.filter(Reservation.id == reservation_id).one_or_none()
         if restaurant is None or reservation is None:
@@ -371,12 +371,13 @@ def create_app(test_config=None):
         end_time = body.get('end_time', None)
         dinning_table_codes = body.get('dinning_table_codes', None)
 
-        dinning_tables = DinningTable.query.filter(DinningTable.code.in_(dinning_table_codes)).all()
-        print(dinning_tables)
-
-        if len(dinning_tables) == 0:
-            abort(404)
-       
+        if dinning_table_codes is not None:
+            dinning_tables = DinningTable.query.filter(DinningTable.code.in_(dinning_table_codes)).all()
+            if len(dinning_tables) == 0:
+                abort(404)
+        else:
+            dinning_tables = []
+        
         try:
             if start_time is not None:
                 reservation.start_time = start_time
@@ -406,8 +407,8 @@ def create_app(test_config=None):
 
 
     @app.route('/restaurants/<int:restaurant_id>/reservations/<int:reservation_id>', methods=['DELETE'])
-    # @requires_auth('delete:reservations')
-    def delete_reservation(restaurant_id, reservation_id):
+    @requires_auth('delete:reservations')
+    def delete_reservation(jwt, restaurant_id, reservation_id):
         restaurant = Restaurant.query.filter(Restaurant.id == restaurant_id).one_or_none()
         reservation = Reservation.query.filter(Reservation.id == reservation_id).one_or_none()
         if restaurant is None or reservation is None:
