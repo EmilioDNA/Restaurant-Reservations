@@ -105,7 +105,7 @@ GET /restaurants
     Results are paginated in groups of 10, Include a request argument to choose page number, starting from 1.
 - Sample: curl http://127.0.0.1:5000/restaurants
 
-
+```
 {
     "restaurants": [
         {
@@ -211,6 +211,8 @@ GET /restaurants
     "success": true,
     "total_restaurants": 13
 }
+```
+
 
 POST /restaurant
 
@@ -221,6 +223,7 @@ POST /restaurant
 
 - Sample: curl -d '{{"title":"La Selva", "city":"Comitan", "state":"Chiapas", "address": "2ra. Nte. #3545", "phone":"3343923", "image_link":"https://laselva.com"}}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/restaurants
 
+```
 {
     "restaurants": [
         {
@@ -327,6 +330,8 @@ POST /restaurant
     "total_restaurants": 14,
     "created": 13
 }
+```
+
 
 PATCH /restaurants/{restaurant_id}
 
@@ -337,6 +342,7 @@ PATCH /restaurants/{restaurant_id}
 
 - Sample: curl -d '{{ "phone":"1234567867"}}' -H "Content-Type: application/json" -X PATCH http://127.0.0.1:5000/restaurants/13
 
+```
 {
     "restaurants": [
         {
@@ -443,6 +449,7 @@ PATCH /restaurants/{restaurant_id}
     "total_restaurants": 14,
     "updated": 13
 }
+```
 
 
 DELETE /restaurants/{restaurant_id}
@@ -453,6 +460,7 @@ DELETE /restaurants/{restaurant_id}
 
 - Sample: curl  -H "Content-Type: application/json" -X DELETE http://127.0.0.1:5000/restaurants/13
 
+```
 {
     "restaurants": [
         {
@@ -550,3 +558,4 @@ DELETE /restaurants/{restaurant_id}
     "total_restaurants": 13,
     "deleted": 13
 }
+```
