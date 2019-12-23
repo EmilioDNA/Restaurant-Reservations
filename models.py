@@ -9,7 +9,7 @@ database_path = "postgres://{}@{}/{}".format('postgres:postgres', 'localhost:543
 if os.environ.get('DATABASE_URL') is None:
     DATABASE_URL = database_path
 else:
-    DATABASE_URL = os.environ.get['DATABASE_URL']
+    DATABASE_URL = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 
