@@ -5,7 +5,11 @@ import datetime
 
 database_name= "reservations"
 database_path = "postgres://{}@{}/{}".format('postgres:postgres', 'localhost:5433', database_name)
-
+# database_path = "postgres://postgres:postgres@localhost:5433/reservations"
+if os.environ.get('DATABASE_URL') is None:
+    DATABASE_URL = database_path
+else:
+    DATABASE_URL = os.environ.get['DATABASE_URL']
 
 db = SQLAlchemy()
 
@@ -14,8 +18,8 @@ db = SQLAlchemy()
 setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
-def setup_db(app, database_path=database_path):
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
+def setup_db(app, database_path=DATABASE_URL):
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)

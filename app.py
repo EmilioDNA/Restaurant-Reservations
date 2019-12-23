@@ -69,7 +69,9 @@ def create_app(test_config=None):
 
     @app.route('/')
     def hello():
-      return 'Hello'
+        var = os.environ.get('API_AUDIENCE', None)
+        print(var)
+        return 'Hello'
 
     @app.route('/restaurants', methods=['GET'])
     @requires_auth('get:restaurants')
