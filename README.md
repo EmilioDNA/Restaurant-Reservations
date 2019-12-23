@@ -214,7 +214,7 @@ GET /restaurants
 ```
 
 
-POST /restaurant
+POST /restaurants
 
 - General:
     Creates a specific restaurant by providing the title, city,
@@ -338,7 +338,7 @@ PATCH /restaurants/{restaurant_id}
 - General:
     Updates a specific restaurant by providing the id.
     You may update all the fields or just one, depending on your needs.
-    Returns a list of restaurant objects that include the updated restaurant, success value, the id of the updated restaurant, and the total number of restaurants after creating.
+    Returns a list of restaurant objects that include the updated restaurant, success value, the id of the updated restaurant, and the total number of restaurants after updating.
 
 - Sample: curl -d '{{ "phone":"1234567867"}}' -H "Content-Type: application/json" -X PATCH http://127.0.0.1:5000/restaurants/13
 
@@ -456,7 +456,7 @@ DELETE /restaurants/{restaurant_id}
 
 - General:
     Deletes a specific restaurant by providing the id.
-    Returns a list of restaurant objects that include the deleted restaurant's id, success value, and the total number of restaurants after creating.
+    Returns a list of restaurant objects that include the deleted restaurant's id, success value, and the total number of restaurants after deleting.
 
 - Sample: curl  -H "Content-Type: application/json" -X DELETE http://127.0.0.1:5000/restaurants/13
 
@@ -557,5 +557,450 @@ DELETE /restaurants/{restaurant_id}
     "success": true,
     "total_restaurants": 13,
     "deleted": 13
+}
+```
+
+GET /restaurants/{restaurant_id}/tables
+
+- General:
+    Returns a list of dinning table objects, success value and  the total number of dinning tables.
+    Results are paginated in groups of 10, Include a request argument to choose page number, starting from 1.
+- Sample: curl http://127.0.0.1:5000/restaurants/1/tables
+
+```
+{
+    "dinning_tables": [
+        {
+            "id": 1,
+            "code": "A001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 2,
+            "code": "A002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 3,
+            "code": "A003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 4,
+            "code": "B001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 5,
+            "code": "B002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 6,
+            "code": "B003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+    ],
+    "success": true,
+    "total_dinning_tables": 6
+}
+```
+
+
+POST /restaurants/{restaurant_id}/tables
+
+- General:
+    Creates a specific dinning table by providing the code and the capacity.
+    Returns a list of dinning table objects that include the newly created dinning table, success value, the id of the created dinning table, and the total number of dinning tables after creating.
+
+- Sample: curl -d '{{"code":"C001", "capacity":8}}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/restaurants/1/tables
+
+```
+{
+    "dinning_tables": [
+        {
+            "id": 1,
+            "code": "A001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 2,
+            "code": "A002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 3,
+            "code": "A003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 4,
+            "code": "B001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 5,
+            "code": "B002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 6,
+            "code": "B003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 7,
+            "code": "C001",
+            "capacity": 8,
+            "restaurant_id": 1
+        },
+        
+    ],
+    "success": true,
+    "total_dinning_tables": 7,
+    "created": 7
+}
+```
+
+
+PATCH /restaurants/{restaurant_id}/tables/{table_id}
+
+- General:
+    Updates a specific dinning table by providing the id.
+    You may update all the fields or just one, depending on your needs.
+    Returns a list of dinning table objects that include the updated dinning table, success value, the id of the updated dinning table, and the total number of dinning tables after updating.
+
+- Sample: curl -d '{{ "capacity":12}}' -H "Content-Type: application/json" -X PATCH http://127.0.0.1:5000/restaurants/1/tables/7
+
+```
+{
+    "dinning_tables": [
+        {
+            "id": 1,
+            "code": "A001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 2,
+            "code": "A002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 3,
+            "code": "A003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 4,
+            "code": "B001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 5,
+            "code": "B002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 6,
+            "code": "B003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 7,
+            "code": "C001",
+            "capacity": 12,
+            "restaurant_id": 1
+        },
+        
+    ],
+    "success": true,
+    "total_dinning_tables": 7,
+    "updated": 7
+}
+```
+
+
+DELETE /restaurants/{restaurant_id}/tables/{table_id}
+
+- General:
+    Deletes a specific dinning table by providing the id.
+    Returns a list of dinning table objects that include the deleted dinning table's id, success value, and the total number of dinning tables after deleting.
+
+- Sample: curl  -H "Content-Type: application/json" -X DELETE http://127.0.0.1:5000/restaurants/1/tables/7
+
+```
+{
+    "dinning_tables": [
+        {
+            "id": 1,
+            "code": "A001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 2,
+            "code": "A002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 3,
+            "code": "A003",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 4,
+            "code": "B001",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 5,
+            "code": "B002",
+            "capacity": 4,
+            "restaurant_id": 1
+        },
+        {
+            "id": 6,
+            "code": "B003",
+            "capacity": 4,
+            "restaurant_id": 1
+        }
+    ],
+    "success": true,
+    "total_dinning_tables": 6,
+    "deleted": 7
+}
+```
+
+GET /restaurants/{restaurant_id}/reservations
+
+- General:
+    Returns a list of reservation objects, success value and  the total number of reservations.
+    Results are paginated in groups of 10, Include a request argument to choose page number, starting from 1.
+- Sample: curl http://127.0.0.1:5000/restaurants/1/reservations
+
+```
+{   "reservations": [
+        {
+
+            "id":1
+            "start_time": "2019-12-22 12:40:00",
+            "end_time": "2019-12-22 15:40:00",
+            "dinning_tables": [
+                {
+                    "id": 1,
+                    "code": "A001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 2,
+                    "code": "A002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 3,
+                    "code": "A003",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        }
+    ],
+
+    "success": true,
+    "total_reservations": 1
+}
+```
+
+
+POST /restaurants/{restaurant_id}/reservations
+
+- General:
+    Creates a specific reservation by providing the start time, the end time and the list of tables to reserve. If the dinning tables don't belong to the requested restaurant, the reservation won't be possible. 
+    Returns a list of reservation objects that include the newly created reservation, success value, the id of the created reservation, and the total number of reservations after creating.
+
+- Sample: curl -d '{{"start_time":"2019-12-22 12:50:00", "end_time":"2019-12-22 13:40:00", "dinning_table_codes":["B001", "B002"]}}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/restaurants/1/reservations
+
+```
+{   
+    "reservations": [
+        {   
+            "id": 1,
+            "start_time": "2019-12-22 12:40:00",
+            "end_time": "2019-12-22 15:40:00",
+            "dinning_tables": [
+                {
+                    "id": 1,
+                    "code": "A001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 2,
+                    "code": "A002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 3,
+                    "code": "A003",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        },
+        {
+            "id":2, 
+            "start_time": "2019-12-22 12:50:00",
+            "end_time": "2019-12-22 13:40:00",
+            "dinning_tables": [
+                {
+                    "id": 4,
+                    "code": "B001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 5,
+                    "code": "B002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        }
+    ],
+    "success": true,
+    "total_reservations": 2,
+    "created": 2
+}
+```
+
+
+PATCH /restaurants/{restaurant_id}/reservations/{reservation_id}
+
+- General:
+    Updates a specific reservation by providing the id.
+    You may update all the fields or just one, depending on your needs.
+    Returns a list of reservation objects that include the updated reservation, success value, the id of the updated reservation, and the total number of reservations after updating.
+
+- Sample: curl -d '{{ "end_time":2019-12-22 16:00:00}}' -H "Content-Type: application/json" -X PATCH http://127.0.0.1:5000/restaurants/1/reservations/2
+
+```
+{   
+    "reservations": [
+        {   
+            "id": 1,
+            "start_time": "2019-12-22 12:40:00",
+            "end_time": "2019-12-22 15:40:00",
+            "dinning_tables": [
+                {
+                    "id": 1,
+                    "code": "A001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 2,
+                    "code": "A002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 3,
+                    "code": "A003",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        },
+        {
+            "id":2, 
+            "start_time": "2019-12-22 12:50:00",
+            "end_time": "2019-12-22 16:00:00",
+            "dinning_tables": [
+                {
+                    "id": 4,
+                    "code": "B001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 5,
+                    "code": "B002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        }
+    ],
+    "success": true,
+    "total_reservations": 2,
+    "updated": 2
+}
+```
+
+
+DELETE /restaurants/{restaurant_id}/reservations/{reservation_id}
+
+- General:
+    Deletes a specific reservation by providing the id.
+    Returns a list of reservation objects that include the deleted reservation's id, success value, and the total number of reservations after deleting.
+
+- Sample: curl  -H "Content-Type: application/json" -X DELETE http://127.0.0.1:5000/restaurants/1/reservations/2
+
+```
+{   
+    "reservations": [
+        {   
+            "id": 1,
+            "start_time": "2019-12-22 12:40:00",
+            "end_time": "2019-12-22 15:40:00",
+            "dinning_tables": [
+                {
+                    "id": 1,
+                    "code": "A001",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 2,
+                    "code": "A002",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                },
+                {
+                    "id": 3,
+                    "code": "A003",
+                    "capacity": 4,
+                    "restaurant_id": 1
+                }
+            ]
+        }
+    ],
+    "success": true,
+    "total_reservations": 1,
+    "deleted": 2
 }
 ```
