@@ -1,0 +1,1646 @@
+{
+	"info": {
+		"_postman_id": "8bc44767-4573-4b77-b5ce-bac73b2151e3",
+		"name": "Restaurant-Reservations-API-tests",
+		"description": "This is the collection that includes the authorization tests of the Restaurant-Reservations-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains restaurant array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains tables array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dinning_tables).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Cielito Querido\", \n\t\"city\":\"Comitan\", \n\t\"state\":\"Chiapas\", \n\t\"address\": \"2ra. Nte. #3545\", \n\t\"phone\":\"3343923\", \n\t\"image_link\":\"https://cielitoquerido.com\"\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"code\":\"E001\", \n\t\"capacity\":4\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"start_time\":\"2019-12-22 12:40:00\", \n\t\"end_time\":\"2019-12-22 15:40:00\", \n\t\"dinning_table_codes\":[\"A001\", \"B001\"]\n\t\n}"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains restaurant array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"address\": \"2ra. Ote. #3545\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains table array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dinning_tables).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"capacity\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"start_time\":\"2019-12-20 20:00:00\",\n\"dinning_table_codes\": [\"C001\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/18",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/15",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik16WTNPRGMyTjBJek0wRTFPVFJETmtNd01qazJNVEF4T0VaQk9ETTFOelEzUlRrNVFrSTJRUSJ9.eyJpc3MiOiJodHRwczovL3Jlc3RhdXJhbnQtcmVzZXJ2YXRpb25zLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZGZjZmM4OTNlYmY5ZDE2NGYxZTFiYTYiLCJhdWQiOiJyZXNlcnZhdGlvbnMiLCJpYXQiOjE1NzY5MzYyNjYsImV4cCI6MTU3Njk0MzQ2NiwiYXpwIjoiWVNyOG02TFA1VFZ3WE05d1U0UFRsUmFoaHJmd2lJZXUiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpkaW5uaW5nLXRhYmxlcyIsImRlbGV0ZTpyZXNlcnZhdGlvbnMiLCJkZWxldGU6cmVzdGF1cmFudHMiLCJnZXQ6ZGlubmluZy10YWJsZXMiLCJnZXQ6cmVzZXJ2YXRpb25zIiwiZ2V0OnJlc3RhdXJhbnRzIiwicGF0Y2g6ZGlubmluZ190YWJsZXMiLCJwYXRjaDpyZXNlcnZhdGlvbnMiLCJwYXRjaDpyZXN0YXVyYW50cyIsInBvc3Q6ZGlubmluZy10YWJsZXMiLCJwb3N0OnJlc2VydmF0aW9ucyIsInBvc3Q6cmVzdGF1cmFudHMiXX0.GB7Wo_FZ1BfPKL2lYhRsHTKBIn1a5e1XOGXEnDpcKyfTApk4iND_UcclZbxO9_bP4iVL8ncsRjEIQaiJl3i5rvEcUUExVuMz5ABhJKq3Z7IjnNmoAzaixp5JeJH8kx2W31olxZPgL84c6G3MMpDuIqNKi5gb0uB4VFqmhnkMwvdp3fDNKav3eNdpriVDqpUdjYXNY8XtsmyPVxO3nz6H4s87rcgjOHTBzO4c84w6je9MTi2Kj4pZ63pm6XD0MZgKvCrHTRNVp-xyUGhSm5bA49K_E1JdulaSuvPbKVP13kejLiqyjbtdmOUQsFUJoNDVGwysRK2tIYk7hHLdxLJAbw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "26042fd3-cd6e-4d53-b941-32166abeaa09",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "52c20a9f-9cbf-4763-93c2-4e0dc991ed9d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains restaurant array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains tables array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dinning_tables).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Cielito Querido\", \n\t\"city\":\"Comitan\", \n\t\"state\":\"Chiapas\", \n\t\"address\": \"2ra. Nte. #3545\", \n\t\"phone\":\"3343923\", \n\t\"image_link\":\"https://cielitoquerido.com\"\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"code\":\"E001\", \n\t\"capacity\":4\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"start_time\":\"2019-12-22 12:40:00\", \n\t\"end_time\":\"2019-12-22 15:40:00\", \n\t\"dinning_table_codes\":[\"A001\", \"B001\"]\n\t\n}"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"address\": \"2ra. Ote. #3545\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains table array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dinning_tables).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"capacity\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"start_time\":\"2019-12-20 20:00:00\",\n\"dinning_table_codes\": [\"C001\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/18",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/16",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik16WTNPRGMyTjBJek0wRTFPVFJETmtNd01qazJNVEF4T0VaQk9ETTFOelEzUlRrNVFrSTJRUSJ9.eyJpc3MiOiJodHRwczovL3Jlc3RhdXJhbnQtcmVzZXJ2YXRpb25zLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZGZlMjdjYzYwOGMxYTBlNzdiNjZhY2UiLCJhdWQiOiJyZXNlcnZhdGlvbnMiLCJpYXQiOjE1NzY5Mzc0NzMsImV4cCI6MTU3Njk0NDY3MywiYXpwIjoiWVNyOG02TFA1VFZ3WE05d1U0UFRsUmFoaHJmd2lJZXUiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpkaW5uaW5nLXRhYmxlcyIsImRlbGV0ZTpyZXNlcnZhdGlvbnMiLCJnZXQ6ZGlubmluZy10YWJsZXMiLCJnZXQ6cmVzZXJ2YXRpb25zIiwiZ2V0OnJlc3RhdXJhbnRzIiwicGF0Y2g6ZGlubmluZ190YWJsZXMiLCJwYXRjaDpyZXNlcnZhdGlvbnMiLCJwb3N0OmRpbm5pbmctdGFibGVzIiwicG9zdDpyZXNlcnZhdGlvbnMiXX0.Qcgfs9bEhgBzDi_lMn_XuUCDT5LkFgnnFMFe9H_Qo9D_xe6Q8-HAQjF8iWmAe4kw-B6IVgjRSMlCINNNENRwAvk-Z2vScUNQdQ_GP8lXObOUz0HHSdqwxaaWpZwa5Oe0pQQbiVUvMDr019dpSG5lmlqRMiM6sMOVJhOToB2-3sljclukei9LD_mFZEJq_OV7baQREd4IvHFktjpOEvv89i-f8liRBVaVQhr-mbQhNI25hYAa_zNCtve6THG59UANanRWw9ramz9tjqIc6dryVkMtD0QvKIpZhTBydOYGLT5zg8MdpiQ9soZN-3jwoEUDWyr5p9IQbAo8NF0llv_F6g",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "26042fd3-cd6e-4d53-b941-32166abeaa09",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "52c20a9f-9cbf-4763-93c2-4e0dc991ed9d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains restaurant array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.restaurants).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains tables array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dinning_tables).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "953c2d05-6f19-4c3d-b478-6af04f097b6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Cielito Querido\", \n\t\"city\":\"Comitan\", \n\t\"state\":\"Chiapas\", \n\t\"address\": \"2ra. Nte. #3545\", \n\t\"phone\":\"3343923\", \n\t\"image_link\":\"https://cielitoquerido.com\"\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"code\":\"E001\", \n\t\"capacity\":4\n\t\n}\n"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1cb084-4f38-42b5-a2d8-8f9604ba168c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"start_time\":\"2019-12-22 12:40:00\", \n\t\"end_time\":\"2019-12-22 15:40:00\", \n\t\"dinning_table_codes\":[\"A001\", \"B001\"]\n\t\n}"
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"address\": \"2ra. Ote. #3545\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"capacity\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5f8977-a0e4-4ed6-8675-034810f3bf7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reservation array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reservations).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"start_time\":\"2019-12-22 22:30:00\",\n\"dinning_table_codes\": [\"C001\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/tables/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/tables/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"tables",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurants/1/reservations/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93a04199-dd3f-4691-a445-5619b2386529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/restaurants/1/reservations/13",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"restaurants",
+								"1",
+								"reservations",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik16WTNPRGMyTjBJek0wRTFPVFJETmtNd01qazJNVEF4T0VaQk9ETTFOelEzUlRrNVFrSTJRUSJ9.eyJpc3MiOiJodHRwczovL3Jlc3RhdXJhbnQtcmVzZXJ2YXRpb25zLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZGZlMjc1MjM5YThkMjBlOGJhMTJkZmYiLCJhdWQiOiJyZXNlcnZhdGlvbnMiLCJpYXQiOjE1NzY5NDA3MDgsImV4cCI6MTU3Njk0NzkwOCwiYXpwIjoiWVNyOG02TFA1VFZ3WE05d1U0UFRsUmFoaHJmd2lJZXUiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpyZXNlcnZhdGlvbnMiLCJnZXQ6ZGlubmluZy10YWJsZXMiLCJnZXQ6cmVzZXJ2YXRpb25zIiwiZ2V0OnJlc3RhdXJhbnRzIiwicGF0Y2g6cmVzZXJ2YXRpb25zIiwicG9zdDpyZXNlcnZhdGlvbnMiXX0.OlFcBFk-4mvIUgh2bKpv30iNq1vb5q8UG2--_GMtJNfDMWVOIvTrK3qFixTulrifFsXzKK7bjSvh1xo8isUJrAeiBLN5B9ch1RtGaNpEB0xW6WrfqP8VAPLXW9BUwAEdgRvL1WVueI2cW1qINa_zcUx6kH98R5N_tKV1J80QUW-ec4UZCyOD9eTDNBEfLjwTF5Ypqwa3b1Vinp9MVNhkF8zm1lP9gcwddP4qqzg5kzE-DzAucAhcNR8GHCdDQsTzDp0sfXgSoOICgfu7QwnS_s6zqgLju_6BoSBIM6NhBfSdVGb5oAYelizHUYPnakWq757GSsfMYDVJ6MMHVn9TFw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "26042fd3-cd6e-4d53-b941-32166abeaa09",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "52c20a9f-9cbf-4763-93c2-4e0dc991ed9d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d5efab58-1436-47a4-854f-615231ff84e5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "69c5475a-0741-4381-a370-dd008e61ae05",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1ab35a87-44da-45c6-9b44-368f59aef359",
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

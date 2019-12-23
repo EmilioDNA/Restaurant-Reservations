@@ -36,7 +36,13 @@ I included all the needed dependencies for this project in the `requirements.txt
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from any frontend server. 
 
 ## Database Setup
-# Pending until implementation
+In order to be able to test the app, is needed to insert data in the following order:
+1.- Create Restaurants  (at least 2 elements)
+2.- Create Dinning tables (at least 3 elements)
+3.- Create Reservations (at least 2 elements)
+
+Take into account that in order to be able to create a Reservation successfully,
+the dinning table codes entered should exist (please refer to the API examples).
 
 ## Running the server
 
@@ -59,14 +65,13 @@ Setting the `FLASK_APP` variable to `app.py` directs flask to use the `app.py` f
 ## Testing
 To run the tests, run
 ```
-dropdb reservation_tests
-createdb reservation_test
-psql reservation_test < reservations.psql
 python test_app.py
 ```
 Take into account that all the routes require authentication, so, You'll have to comment in the `@requires_auth` decorator to run the functional tests.
 
-Additionally, you can test the authentication with Postman, by using the `restaurants-reservation-posman-test-collection.file`, and run it within Postman.
+Consider that in order to test the application, Restaurant, Dinning table, and Reservation data must be created in a table called `reservation_tests`, the Ids from these elements must match with the tested endpoints. 
+
+Additionally, you can test the authentication with Postman, by using the `Restaurant-Reservations-API-tests.postman_collection.json`, and run it within Postman.
 
 ## API Reference
 
@@ -126,7 +131,7 @@ GET /restaurants
             "state": "Chiapas",
             "title": "La esquina de Tio Beli"
         },
-        {
+,        {
             "address": "1ra. Av. Ote. Nte. #45",
             "city": "Comitan",
             "id": 3,
@@ -134,7 +139,7 @@ GET /restaurants
             "phone": "10245649",
             "state": "Chiapas",
             "title": "The Italian Coffee"
-        },
+        }
         {
             "address": "2ra. Ote. #3545",
             "city": "Comitan",

@@ -120,7 +120,7 @@ class ReservationTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
 
     def test_delete_restaurant(self):
-        res = self.client().delete('/restaurants/17')
+        res = self.client().delete('/restaurants/2')
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code, 200)
@@ -203,7 +203,7 @@ class ReservationTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
 
     def test_delete_dinning_table(self):
-        res = self.client().delete('/restaurants/1/tables/12')
+        res = self.client().delete('/restaurants/1/tables/2')
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code, 200)
@@ -268,7 +268,7 @@ class ReservationTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'method not allowed')
 
     def test_update_reservation(self):
-        res = self.client().patch('/restaurants/1/reservations/5', json={"start_time":"2019-12-22 13:40:00",  "dinning_table_codes":["C001"]})
+        res = self.client().patch('/restaurants/1/reservations/2', json={"start_time":"2019-12-22 13:40:00",  "dinning_table_codes":["C001"]})
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code, 200)
@@ -286,7 +286,7 @@ class ReservationTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'resource not found')
 
     def test_delete_reservation(self):
-        res = self.client().delete('/restaurants/1/reservations/9')
+        res = self.client().delete('/restaurants/1/reservations/2')
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code, 200)
